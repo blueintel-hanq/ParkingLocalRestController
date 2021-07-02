@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <property name="now" value="now()" dbms="h2"/>
+    <property name="now" value="now()" dbms="mysql"/>
+    <property name="autoIncrement" value="true"/>
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <changeSet id="1" author="hanq@b">
+        <createTable tableName="tbl_1">
+            <column name="id" type="Long"></column>
+        </createTable>
+    </changeSet>
+    <changeSet author="hanq@b" id="tag_1">
+        <tagDatabase tag="version_0.1.0" />
+    </changeSet>
+
+    <changeSet id="2" author="hanq@b">
+        <createTable tableName="tbl_2">
+            <column name="id" type="Long"></column>
+        </createTable>
+    </changeSet>
+    <changeSet author="hanq@b" id="tag_2">
+        <tagDatabase tag="version_0.2.0" />
+    </changeSet>
+
+
+</databaseChangeLog>
