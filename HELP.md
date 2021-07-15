@@ -18,6 +18,6 @@ These additional references should also help you:
 #### liquibase 실행 
 gradlew update 
 #### liquibase rollback tag
-gradlew rollback -PliquibaseCommandValue=version_0.1.0
-
-unexpectedChangeSets
+gradlew rollback -PliquibaseCommandValue=ver_0.0.0
+#### liquibase document
+gradlew dbDoc -PliquibaseCommandValue=dbDoc

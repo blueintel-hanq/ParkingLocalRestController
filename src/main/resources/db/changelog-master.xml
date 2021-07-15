@@ -3,28 +3,35 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
-    <property name="now" value="now()" dbms="h2"/>
-    <property name="now" value="now()" dbms="mysql"/>
-    <property name="autoIncrement" value="true"/>
-    <property name="floatType" value="float4" dbms="postgresql, h2"/>
-    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
-    <changeSet id="1" author="hanq@b">
-        <createTable tableName="tbl_1">
-            <column name="id" type="Long"></column>
-        </createTable>
-    </changeSet>
-    <changeSet author="hanq@b" id="tag_1">
-        <tagDatabase tag="version_0.1.0" />
+    <changeSet author="hanq@blueintel.ai" id="tag_clear">
+        <tagDatabase tag="ver_0.0.0" />
     </changeSet>
 
-    <changeSet id="2" author="hanq@b">
-        <createTable tableName="tbl_2">
-            <column name="id" type="Long"></column>
+    <changeSet id="20210713.HANQ.001" author="hanq@blueintel.ai">
+        <createTable tableName="oauth_client_details" remarks="oauth 인증 클라이언트 정보">
+            <column name="client_id" type="varchar(256)" remarks="클라이언트 구분키">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="resource_ids" type="varchar(256)" remarks="자원서버 구분키"/>
+            <column name="client_secret" type="varchar(256)" remarks="클라이언트 비밀키"/>
+            <column name="scope" type="varchar(256)" remarks="클라이언트 범위"/>
+            <column name="authorized_grant_types" type="varchar(256)" remarks="권한 부여 방식"/>
+            <column name="web_server_redirect_uri" type="varchar(256)" remarks="자원서버 접속 URI"/>
+            <column name="authorities" type="varchar(256)" remarks="권한"/>
+            <column name="access_token_validity" type="int" remarks="접속 토큰 유효기간"/>
+            <column name="refresh_token_validity" type="int" remarks="갱신 토큰 유효기간"/>
+            <column name="additional_information" type="varchar(4096)" remarks="부가 정보"/>
+            <column name="autoapprove" type="varchar(256)" remarks="자동승인"/>
         </createTable>
+        <sqlFile path="./src/main/resources/db/sql/init.sql" />
+        <rollback>
+            <sqlFile path="./src/main/resources/db/sql/init_rollback.sql"/>
+        </rollback>
     </changeSet>
-    <changeSet author="hanq@b" id="tag_2">
-        <tagDatabase tag="version_0.2.0" />
+
+    <changeSet author="hanq@blueintel.ai" id="tag_init">
+        <tagDatabase tag="ver_0.0.1" />
     </changeSet>
 
 

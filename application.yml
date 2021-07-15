@@ -1,0 +1,52 @@
+spring:
+  profiles:
+    active: local
+
+server:
+  port: 9090
+
+---
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  profile: local
+  db:
+    host: localhost
+    port: 3306
+  datasource:
+    url: jdbc:mariadb://${spring.db.host}:${spring.db.port}/blueintel_parking?characterEncoding=UTF-8&allowMultiQueries=true
+    username: user_rest
+    password: elwlxjffh31!@
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+
+  liquibase:
+    change-log: classpath:/db/changelog-master.xml
+    drop-first: false
+    enabled: false
+
+custom:
+  jwtKey: MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDYVWrPbhENCkdmiHuITs5K3fG/gIYsw5/Bd54c4Vgk5/IpoBKMfpyiTCJm615v3jc7MJAXyoyWpFt3GRu/llzgOOFOSLZh4qIsMjSKnAS/3I7YKMAU0lemh1a4oHDmiSSSGeSZc18UrpcpL4n0wwh9qJBfD82bd9IzQdEIXvF9hwIDAQAB
+
+springdoc:
+  version: '@project.version@'
+  api-docs:
+    path: /api-docs
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+  swagger-ui:
+    operations-sorter: alpha
+    tags-sorter: alpha
+    path: /swagger-ui.html
+    disable-swagger-default-url: true
+    display-query-params-without-oauth2: true
+  paths-to-match:
+    - /api/**
+    - /test/**
